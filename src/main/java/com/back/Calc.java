@@ -30,15 +30,29 @@ public class Calc {
     }
 
     public static int calculateExpression(String expression) {
-        String[] expressionBits = expression.split(" \\- | \\+ ");
-        List<Integer> numbers = new ArrayList<>();
-        for(String bit : expressionBits){
-            numbers.add(Integer.parseInt(bit.trim()));
+        String[] expressionBits = expression.split(" ");
+        int result = Integer.parseInt(expressionBits[0]);
+        for (int i = 1; i < expressionBits.length; i += 2) {
+            String operator = expressionBits[i];
+            int number = Integer.parseInt(expressionBits[i + 1]);
+            if (operator.equals("+")) {
+                result += number;
+            } else if (operator.equals("-")) {
+                result -= number;
+            }
         }
-        int sum = 0;
-        for(int n : numbers){
-            sum += n;
+        return result;
+    }
+    public static int productExpression(String expression) {
+        String[] expressionBits = expression.split(" ");
+        int result = Integer.parseInt(expressionBits[0]);
+        for (int i = 1; i < expressionBits.length; i += 2) {
+            String operator = expressionBits[i];
+            int number = Integer.parseInt(expressionBits[i + 1]);
+            if (operator.equals("*")) {
+                result *= number;
+            }
         }
-        return sum;
+       return result;
     }
 }
